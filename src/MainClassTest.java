@@ -11,4 +11,16 @@ public class MainClassTest extends MainClass {
             System.out.println("Test Failed " + number + "!=14");
         }
     }
+
+    @Test
+    public void testGetClassNumber() {
+        int number = this.getClassNumber();
+        if (number > 45) {
+            System.out.println("Test completed successfully");
+        }
+        else {
+            System.out.println("Test Failed " + number + "<45");
+        }
+    }
+
 }
