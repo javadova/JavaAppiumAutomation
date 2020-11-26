@@ -10,4 +10,13 @@ public class MainClass {
     public int getClassNumber() {
         return this.class_number();
     }
+
+    private String class_string() {
+        String string = "Hello,world";
+        return string;
+    }
+
+    public String getClassString() {
+        return this.class_string();
+    }
 }
