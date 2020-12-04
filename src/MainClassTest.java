@@ -10,7 +10,7 @@ public class MainClassTest extends MainClass {
 
     @Test
     public void testGetClassNumber() {
-        Assert.assertTrue("Test Failed: Value < 45",getClassNumber() > 45);
+        Assert.assertTrue("Test Failed: Value < 45",getClassNumber() >= 45);
     }
 
     @Test
