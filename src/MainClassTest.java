@@ -4,7 +4,7 @@ import org.junit.Test;
 public class MainClassTest extends MainClass {
 
     @Test
-    public void test2GetLocalNumber() {
+    public void testGetLocalNumber() {
         Assert.assertTrue("Test Failed: Value !=14", getLocalNumber() == 14);
     }
 
