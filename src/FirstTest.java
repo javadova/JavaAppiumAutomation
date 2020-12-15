@@ -125,6 +125,17 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testFindText(){
+        assertElementHasText(
+                By.xpath("//*[contains(@text,'Search Wikipedia')]"),
+                "Search Wikipedia",
+                "Cannot find expected text"
+        );
+    }
+
+
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
@@ -160,6 +171,15 @@ public class FirstTest {
         WebElement element = waitForElementPresent(by, error_message,5);
         element.clear();
         return element;
+    }
+
+    private void assertElementHasText(By by, String expected_text, String error_message) {
+        WebElement element = driver.findElement(by);
+        Assert.assertEquals(
+                error_message,
+                expected_text,
+                element.getAttribute("text")
+        );
     }
 
 }
