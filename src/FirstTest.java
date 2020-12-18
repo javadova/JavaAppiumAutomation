@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
+import java.util.List;
 
 public class FirstTest {
 
@@ -134,6 +135,45 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testCheckCancelSearch(){
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text,'Search…')]"),
+                "Appium",
+                "Cannot find search input",
+                5
+        );
+
+        Assert.assertTrue("Find results less than 2", getCountElement(
+        By.id("org.wikipedia:id/page_list_item_container"),
+        "elements not found",
+        5) >= 2);
+
+        waitForElementAndClear(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Cannot find search field",
+                5
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot find X to cancel search",
+                5
+        );
+
+        waitForElementNotPresent(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "X is still present of the page",
+                5
+        );
+
+    }
 
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds){
@@ -181,5 +221,8 @@ public class FirstTest {
                 element.getAttribute("text")
         );
     }
-
+    private int getCountElement(By by, String error_message,long timeoutInSeconds) {
+        int count = driver.findElements(by).size();
+        return count;
+    }
 }
