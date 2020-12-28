@@ -1,8 +1,10 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 public class SearchTests extends CoreTestCase {
     @Test
@@ -47,6 +49,24 @@ public class SearchTests extends CoreTestCase {
         String search_line = "zchfgeteuo";
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.waitForEmptyResultsLabel();
+        SearchPageObject.assertThereIsNoResultOfSearch();
+    }
+
+    // Ex3
+    @Test
+    public void testCheckCancelSearch(){
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        String search_line = "Appium";
+        SearchPageObject.typeSearchLine(search_line);
+        int amount_of_search_results = SearchPageObject.getAmmountOfFoundArticle();
+        assertTrue(
+                "Find results less than 2",
+                amount_of_search_results >= 2
+        );
+
+        SearchPageObject.clickCancelSearch();
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
 }
