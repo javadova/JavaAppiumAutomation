@@ -8,7 +8,8 @@ abstract public class MyListsPageObject extends MainPageObject {
     protected static String
         FOLDER_BY_NAME_TPL,
         ARTICLE_BY_TITLE_TPL,
-        TITLE_ARTICLE;
+        TITLE_ARTICLE,
+        DELETE_ARTICLE;
 
     private static String getFolderXpathByName(String name_of_folder)
     {
@@ -77,5 +78,10 @@ abstract public class MyListsPageObject extends MainPageObject {
     public WebElement waitForTitleElementMyList()
     {
         return this.waitForElementPresent(TITLE_ARTICLE, "Cannot find article on page", 15);
+    }
+
+    public void checkRightArticleWasDeleted()
+    {
+        this.waitForElementNotPresent(DELETE_ARTICLE, "Wrong article was deleted",5);
     }
 }
